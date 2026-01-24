@@ -11,7 +11,7 @@ const firebaseConfig = {
   storageBucket: "mediverse-e3066.firebasestorage.app",
   messagingSenderId: "885013758300",
   appId: "1:885013758300:web:a78c92c2a21487eef74199",
-  measurementId: "G-0KF5L7QF4C"
+  measurementId: "G-0KF5L7QF4C",
 };
 
 // Initialize Firebase
@@ -30,4 +30,3 @@ export const db = getFirestore(app);
 export const googleProvider = new GoogleAuthProvider();
 
 export default app;
-

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { 
-  createUserWithEmailAndPassword, 
+import {
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup 
+  signInWithPopup,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db, googleProvider } from "../firebase/config";
@@ -31,16 +31,16 @@ export default function CivilianAuth() {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      
+
       // Store additional user data in Firestore
       await setDoc(doc(db, "civilians", user.uid), {
         name: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
         createdAt: new Date().toISOString(),
-        role: "civilian"
+        role: "civilian",
       });
-      
+
       navigate("/civilian");
     } catch (error) {
       console.error("Google login error:", error);
@@ -69,9 +69,9 @@ export default function CivilianAuth() {
         const userCredential = await createUserWithEmailAndPassword(
           auth,
           formData.email,
-          formData.password
+          formData.password,
         );
-        
+
         // Store additional civilian data in Firestore
         await setDoc(doc(db, "civilians", userCredential.user.uid), {
           name: formData.name,
@@ -82,18 +82,22 @@ export default function CivilianAuth() {
           height: formData.height,
           weight: formData.weight,
           createdAt: new Date().toISOString(),
-          role: "civilian"
+          role: "civilian",
         });
-        
+
         navigate("/civilian");
       } else {
         // Sign in existing user
-        await signInWithEmailAndPassword(auth, formData.email, formData.password);
+        await signInWithEmailAndPassword(
+          auth,
+          formData.email,
+          formData.password,
+        );
         navigate("/civilian");
       }
     } catch (error) {
       console.error("Authentication error:", error);
-      
+
       // Handle specific error codes
       if (error.code === "auth/email-already-in-use") {
         setError("This email is already registered. Please sign in instead.");
@@ -122,7 +126,11 @@ export default function CivilianAuth() {
           <p>Get personalized health monitoring and AI-powered guidance</p>
         </div>
 
-        <button className="google-btn" onClick={handleGoogleLogin} disabled={loading}>
+        <button
+          className="google-btn"
+          onClick={handleGoogleLogin}
+          disabled={loading}
+        >
           <svg className="google-icon" viewBox="0 0 24 24">
             <path
               fill="#4285F4"
@@ -275,7 +283,11 @@ export default function CivilianAuth() {
           )}
 
           <button type="submit" className="auth-btn" disabled={loading}>
-            {loading ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
+            {loading
+              ? "Please wait..."
+              : isSignUp
+                ? "Create Account"
+                : "Sign In"}
           </button>
         </form>
 

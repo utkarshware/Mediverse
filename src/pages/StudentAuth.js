@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { 
-  createUserWithEmailAndPassword, 
+import {
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup 
+  signInWithPopup,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db, googleProvider } from "../firebase/config";
@@ -29,16 +29,16 @@ export default function StudentAuth() {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      
+
       // Store additional user data in Firestore
       await setDoc(doc(db, "students", user.uid), {
         name: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
         createdAt: new Date().toISOString(),
-        role: "student"
+        role: "student",
       });
-      
+
       navigate("/student");
     } catch (error) {
       console.error("Google login error:", error);
@@ -67,9 +67,9 @@ export default function StudentAuth() {
         const userCredential = await createUserWithEmailAndPassword(
           auth,
           formData.email,
-          formData.password
+          formData.password,
         );
-        
+
         // Store additional student data in Firestore
         await setDoc(doc(db, "students", userCredential.user.uid), {
           name: formData.name,
@@ -78,18 +78,22 @@ export default function StudentAuth() {
           year: formData.year,
           course: formData.course,
           createdAt: new Date().toISOString(),
-          role: "student"
+          role: "student",
         });
-        
+
         navigate("/student");
       } else {
         // Sign in existing user
-        await signInWithEmailAndPassword(auth, formData.email, formData.password);
+        await signInWithEmailAndPassword(
+          auth,
+          formData.email,
+          formData.password,
+        );
         navigate("/student");
       }
     } catch (error) {
       console.error("Authentication error:", error);
-      
+
       // Handle specific error codes
       if (error.code === "auth/email-already-in-use") {
         setError("This email is already registered. Please sign in instead.");
@@ -118,7 +122,11 @@ export default function StudentAuth() {
           <p>Join our learning platform to master medical devices</p>
         </div>
 
-        <button className="google-btn" onClick={handleGoogleLogin} disabled={loading}>
+        <button
+          className="google-btn"
+          onClick={handleGoogleLogin}
+          disabled={loading}
+        >
           <svg className="google-icon" viewBox="0 0 24 24">
             <path
               fill="#4285F4"
@@ -237,7 +245,11 @@ export default function StudentAuth() {
           )}
 
           <button type="submit" className="auth-btn" disabled={loading}>
-            {loading ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
+            {loading
+              ? "Please wait..."
+              : isSignUp
+                ? "Create Account"
+                : "Sign In"}
           </button>
         </form>
 
