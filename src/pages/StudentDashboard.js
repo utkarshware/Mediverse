@@ -37,8 +37,9 @@ export default function StudentDashboard() {
         <div className="learn-grid">
           <div className="learn-card">
             <img
-              src="https://images.unsplash.com/photo-1580281657521-6b9c3f0b87f4?auto=format&fit=crop&w=800&q=80"
-              alt="BP Monitor"
+              src="https://images.unsplash.com/photo-1580281657521-6b9c3f0b87f4?auto=format&fit=crop&w=1200&q=80"
+              alt="Blood Pressure Monitor"
+              loading="lazy"
             />
             <h3>Blood Pressure Monitor</h3>
             <p>Understand readings, cuff placement & critical values</p>
@@ -47,8 +48,9 @@ export default function StudentDashboard() {
 
           <div className="learn-card">
             <img
-              src="https://images.unsplash.com/photo-1584036561584-b03c19da874c?auto=format&fit=crop&w=800&q=80"
+              src="https://images.unsplash.com/photo-1584036561584-b03c19da874c?auto=format&fit=crop&w=1200&q=80"
               alt="Glucometer"
+              loading="lazy"
             />
             <h3>Glucometer</h3>
             <p>Learn glucose testing steps & normal ranges</p>
@@ -57,8 +59,9 @@ export default function StudentDashboard() {
 
           <div className="learn-card">
             <img
-              src="https://images.unsplash.com/photo-1584467735871-b0f7c2b3f3b6?auto=format&fit=crop&w=800&q=80"
+              src="https://images.unsplash.com/photo-1584467735871-b0f7c2b3f3b6?auto=format&fit=crop&w=1200&q=80"
               alt="Thermometer"
+              loading="lazy"
             />
             <h3>Thermometer</h3>
             <p>Correct usage & fever interpretation</p>
@@ -67,8 +70,9 @@ export default function StudentDashboard() {
 
           <div className="learn-card">
             <img
-              src="https://images.unsplash.com/photo-1580281658391-0b6c5c1db3c6?auto=format&fit=crop&w=800&q=80"
+              src="https://images.unsplash.com/photo-1580281658391-0b6c5c1db3c6?auto=format&fit=crop&w=1200&q=80"
               alt="Pulse Oximeter"
+              loading="lazy"
             />
             <h3>Pulse Oximeter</h3>
             <p>Oxygen levels & emergency thresholds</p>
