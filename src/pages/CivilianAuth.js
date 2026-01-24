@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGoogleLogin } from "@react-oauth/google";
+import { 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword,
+  signInWithPopup 
+} from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db, googleProvider } from "../firebase/config";
 import Footer from "../components/Footer";
 
 export default function CivilianAuth() {
   const navigate = useNavigate();
   const [isSignUp, setIsSignUp] = useState(true);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,15 +25,30 @@ export default function CivilianAuth() {
     weight: "",
   });
 
-  const handleGoogleLogin = useGoogleLogin({
-    onSuccess: (credentialResponse) => {
-      localStorage.setItem("googleData", JSON.stringify(credentialResponse));
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      
+      // Store additional user data in Firestore
+      await setDoc(doc(db, "civilians", user.uid), {
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        createdAt: new Date().toISOString(),
+        role: "civilian"
+      });
+      
       navigate("/civilian");
-    },
-    onError: () => {
-      console.log("Google login failed");
-    },
-  });
+    } catch (error) {
+      console.error("Google login error:", error);
+      setError("Failed to sign in with Google. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,12 +58,59 @@ export default function CivilianAuth() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSignUp) {
-      localStorage.setItem("civilianData", JSON.stringify(formData));
+    setLoading(true);
+    setError("");
+
+    try {
+      if (isSignUp) {
+        // Create new user with email and password
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          formData.email,
+          formData.password
+        );
+        
+        // Store additional civilian data in Firestore
+        await setDoc(doc(db, "civilians", userCredential.user.uid), {
+          name: formData.name,
+          email: formData.email,
+          age: formData.age,
+          gender: formData.gender,
+          city: formData.city,
+          height: formData.height,
+          weight: formData.weight,
+          createdAt: new Date().toISOString(),
+          role: "civilian"
+        });
+        
+        navigate("/civilian");
+      } else {
+        // Sign in existing user
+        await signInWithEmailAndPassword(auth, formData.email, formData.password);
+        navigate("/civilian");
+      }
+    } catch (error) {
+      console.error("Authentication error:", error);
+      
+      // Handle specific error codes
+      if (error.code === "auth/email-already-in-use") {
+        setError("This email is already registered. Please sign in instead.");
+      } else if (error.code === "auth/weak-password") {
+        setError("Password should be at least 6 characters.");
+      } else if (error.code === "auth/user-not-found") {
+        setError("No account found with this email. Please sign up first.");
+      } else if (error.code === "auth/wrong-password") {
+        setError("Incorrect password. Please try again.");
+      } else if (error.code === "auth/invalid-email") {
+        setError("Invalid email address.");
+      } else {
+        setError("Authentication failed. Please try again.");
+      }
+    } finally {
+      setLoading(false);
     }
-    navigate("/civilian");
   };
 
   return (
@@ -52,7 +122,7 @@ export default function CivilianAuth() {
           <p>Get personalized health monitoring and AI-powered guidance</p>
         </div>
 
-        <button className="google-btn" onClick={() => handleGoogleLogin()}>
+        <button className="google-btn" onClick={handleGoogleLogin} disabled={loading}>
           <svg className="google-icon" viewBox="0 0 24 24">
             <path
               fill="#4285F4"
@@ -77,6 +147,8 @@ export default function CivilianAuth() {
         <div className="divider">
           <span>or</span>
         </div>
+
+        {error && <div className="error-message">{error}</div>}
 
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="form-group">
@@ -202,8 +274,8 @@ export default function CivilianAuth() {
             </div>
           )}
 
-          <button type="submit" className="auth-btn">
-            {isSignUp ? "Create Account" : "Sign In"}
+          <button type="submit" className="auth-btn" disabled={loading}>
+            {loading ? "Please wait..." : isSignUp ? "Create Account" : "Sign In"}
           </button>
         </form>
 
