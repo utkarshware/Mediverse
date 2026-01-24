@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h3>Gemini Vision Test</h3>
+  <input type="file" id="img" />
+  <button id="send">Send to Gemini</button>
+  <pre id="out"></pre>
+
+  <script>
+    document.getElementById("send").onclick = async () => {
+      const file = document.getElementById("img").files[0];
+      if (!file) return alert("Choose an image");
+
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const base64 = reader.result.split(",")[1];
+
+        const res = await fetch("http://localhost:5001/api/gemini/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ imageBase64: base64 })
+        });
+
+        const text = await res.text();
+        document.getElementById("out").innerText = text;
+        console.log(text);
+      };
+      reader.readAsDataURL(file);
+    };
+  </script>
+</body>
+</html>

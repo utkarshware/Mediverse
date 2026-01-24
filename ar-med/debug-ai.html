@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Debug</title>
+  <style>
+    body {
+      background: black;
+      color: #00ff88;
+      font-family: system-ui;
+      padding: 20px;
+    }
+    #box {
+      background: rgba(20,20,20,0.9);
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 600px;
+    }
+    input {
+      margin-top: 20px;
+    }
+    pre {
+      white-space: pre-wrap;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<h2>AI Output Debug</h2>
+
+<div id="box">
+  <p id="status">Upload an image</p>
+  <pre id="output"></pre>
+</div>
+
+<input type="file" id="img" accept="image/*" />
+
+<script>
+document.getElementById("img").onchange = async e => {
+  const file = e.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = async () => {
+    const base64 = reader.result.split(",")[1];
+
+    const res = await fetch("http://localhost:5001/api/gemini/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ imageBase64: base64 })
+    });
+
+    const text = await res.text();          // IMPORTANT
+    console.log("RAW:", text);
+
+    const json = JSON.parse(text);
+
+    document.getElementById("status").innerText =
+      "Device: " + json.device;
+
+    document.getElementById("output").innerText =
+      JSON.stringify(json, null, 2);
+  };
+
+  reader.readAsDataURL(file);
+};
+</script>
+
+</body>
+</html>

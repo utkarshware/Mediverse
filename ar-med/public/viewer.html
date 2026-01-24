@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>AI Medical Device Trainer</title>
+
+<style>
+
+    
+body {
+  margin: 0;
+  background: radial-gradient(#0b0f12, #000);
+  font-family: system-ui, sans-serif;
+  overflow: hidden;
+}
+
+/* ===== PANELS ===== */
+.panel {
+  position: absolute;
+  top: 20px;
+  padding: 18px;
+  background: rgba(20,20,20,0.92);
+  color: white;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0,255,136,0.15);
+}
+
+/* LEFT */
+#left {
+  left: 20px;
+  width: 320px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* RIGHT */
+#right {
+  right: 20px;
+  width: 480px;
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 0 40px rgba(0,255,136,0.25),
+    0 20px 60px rgba(0,0,0,0.6);
+}
+
+h3 {
+  color: #00ff88;
+  margin-top: 0;
+}
+
+/* ===== ABOUT ===== */
+#about {
+  font-size: 15px;
+  line-height: 1.75;
+  padding: 14px;
+  background: rgba(255,255,255,0.05);
+  border-left: 4px solid #00ff88;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+#usage {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cccccc;
+  margin-bottom: 14px;
+}
+
+#measures li {
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  background: rgba(0,255,136,0.06);
+  border-radius: 8px;
+}
+
+/* ===== STEP CARD ===== */
+#stepTitle {
+  font-size: 26px;
+  font-weight: 800;
+  color: #00ccff;
+  margin-bottom: 10px;
+}
+
+#stepText {
+  font-size: 20px;
+  line-height: 1.8;
+  color: #f8fafc;
+  margin-bottom: 16px;
+}
+
+#mistakes {
+  font-size: 17px;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255,80,80,0.18);
+  border-left: 4px solid #ff6b6b;
+}
+
+/* ===== BUTTONS ===== */
+button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#00ff88,#00ccff);
+}
+
+#restartBtn {
+  background: linear-gradient(135deg,#334155,#475569);
+}
+
+/* ===== INSTRUCTION ===== */
+#instruction {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #00ff88;
+  background: rgba(0,0,0,0.6);
+  padding: 8px;
+}
+
+/* ===== PULSE ===== */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 rgba(0,255,136,0.3); }
+  50% { box-shadow: 0 0 30px rgba(0,255,136,0.6); }
+  100% { box-shadow: 0 0 0 rgba(0,255,136,0.3); }
+}
+
+#right.active {
+  animation: pulseGlow 2s infinite;
+}
+
+
+#chatbot {
+  position: absolute;
+  bottom: 20px;
+  right: 520px;
+  width: 320px;
+  height: 360px;
+  background: rgba(15,15,15,0.95);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 40px rgba(0,255,136,0.2);
+  font-size: 14px;
+  z-index: 9999;       /* 👈 FORCE ON TOP */
+  pointer-events: all;
+}
+
+#chatHeader {
+  padding: 12px;
+  font-weight: bold;
+  color: #00ff88;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+#chatMessages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.chat-user {
+  text-align: right;
+  margin-bottom: 8px;
+  color: #9ae6b4;
+}
+
+.chat-ai {
+  text-align: left;
+  margin-bottom: 12px;
+  color: #e5e7eb;
+}
+
+#chatInput {
+  display: flex;
+  padding: 10px;
+  gap: 6px;
+}
+
+#chatInput input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+}
+
+
+#chatInput button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: linear-gradient(135deg,#00ff88,#00ccff);
+  border: none;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LEFT PANEL -->
+<div class="panel" id="left">
+  <h3 id="deviceName"></h3>
+  <div id="about"></div>
+  <div id="usage"></div>
+  <ul id="measures"></ul>
+  <p id="risk" style="font-weight:bold;margin-top:10px"></p>
+
+  <select id="languageSelect" style="width:100%;margin-top:10px">
+    <option value="en-US">English</option>
+    <option value="hi-IN">Hindi</option>
+    <option value="fr-FR">French</option>
+    <option value="es-ES">Spanish</option>
+  </select>
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="panel" id="right">
+  <h3 id="stepTitle"></h3>
+  <p id="stepText"></p>
+  <p id="mistakes"></p>
+  <button id="nextBtn">Next</button>
+  <button id="restartBtn">⟲ Start Over</button>
+</div>
+
+<div id="instruction"></div>
+
+<script src="https://unpkg.com/three@0.147.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://unpkg.com/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<script>
+/* ===== LOAD AI DATA ===== */
+const aiData = JSON.parse(localStorage.getItem("aiDeviceData"));
+if (!aiData) alert("No AI data found");
+
+/* ===== LEFT PANEL ===== */
+deviceName.innerText = aiData.device;
+about.innerHTML = `<strong>About the Device</strong><br>${aiData.about}`;
+usage.innerHTML = `<strong>How it is Used</strong><br>${aiData.usage}`;
+
+aiData.measures.forEach(m => {
+  const li = document.createElement("li");
+  li.innerText = `${m.label}: ${m.description}`;
+  measures.appendChild(li);
+});
+
+/* ===== BP RISK ===== */
+function analyzeBP(sys, dia) {
+  if (sys < 90 || dia < 60) return "⚠ Low Blood Pressure";
+  if (sys < 120 && dia < 80) return "✅ Normal BP";
+  if (sys < 130) return "⚠ Elevated BP";
+  if (sys < 140 || dia < 90) return "⚠ Hypertension Stage 1";
+  return "❌ Hypertension Stage 2";
+}
+risk.innerText = "Risk: " + analyzeBP(118, 78);
+
+/* ===== VOICE ===== */
+let selectedLanguage = "en-US";
+languageSelect.onchange = e => selectedLanguage = e.target.value;
+
+function speak(text) {
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = selectedLanguage;
+  speechSynthesis.speak(u);
+}
+
+/* ===== THREE ===== */
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x050505);
+
+const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 100);
+camera.position.set(0,1.2,2);
+
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setSize(innerWidth, innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+const light = new THREE.DirectionalLight(0xffffff, 0.8);
+light.position.set(2,3,4);
+scene.add(light);
+
+let model;
+new THREE.GLTFLoader().load("models/Edited_BPMachine.glb", gltf => {
+  model = gltf.scene;
+  scene.add(model);
+});
+
+/* ===== PART MAP ===== */
+const PART_MAP = {
+  start: ["start_button"],
+  screen: ["screen", "display"],
+  cuff: ["strap"],
+  tube: ["tube"],
+  body: ["body"]
+};
+
+/* ===== HIGHLIGHT + CAMERA ===== */
+function highlight(target) {
+  if (!model || !target) return;
+
+  let box = new THREE.Box3();
+
+  model.traverse(o => {
+    if (o.isMesh && o.material?.emissive) {
+      o.material.emissive.setHex(0x000000);
+      o.material.emissiveIntensity = 0;
+    }
+  });
+
+  model.traverse(o => {
+    if (
+      o.isMesh &&
+      PART_MAP[target]?.some(k => o.name.toLowerCase().includes(k))
+    ) {
+      o.material = o.material.clone();
+      o.material.emissive = new THREE.Color(0x00ff88);
+      o.material.emissiveIntensity = 2.5;
+      box.expandByObject(o);
+    }
+  });
+
+  if (!box.isEmpty()) {
+    const center = box.getCenter(new THREE.Vector3());
+    camera.position.lerp(center.clone().add(new THREE.Vector3(0,0.4,1)), 0.35);
+    controls.target.lerp(center, 0.35);
+  }
+}
+
+/* ===== STEPS ===== */
+let stepIndex = 0;
+
+function renderStep() {
+  const step = aiData.steps[stepIndex];
+
+  stepTitle.innerText = `Step ${stepIndex + 1}`;
+  stepText.innerText = step.explanation;
+  mistakes.innerText = step.mistakes ? "⚠ " + step.mistakes : "";
+  instruction.innerText = step.title;
+
+  right.classList.remove("active");
+  void right.offsetWidth;
+  right.classList.add("active");
+
+  speak(`${step.title}. ${step.explanation}`);
+  highlight(step.target);
+}
+
+nextBtn.onclick = () => {
+  stepIndex = Math.min(stepIndex + 1, aiData.steps.length - 1);
+  renderStep();
+};
+
+restartBtn.onclick = () => {
+  stepIndex = 0;
+  camera.position.set(0,1.2,2);
+  controls.target.set(0,0.8,0);
+  renderStep();
+};
+
+renderStep();
+
+/* ===== LOOP ===== */
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+document.addEventListener("DOMContentLoaded", () => {
+  const chatMessages = document.getElementById("chatMessages");
+  const chatText = document.getElementById("chatText");
+  const sendChat = document.getElementById("sendChat");
+
+  if (!sendChat) {
+    console.error("❌ sendChat button not found");
+    return;
+  }
+
+  function addMessage(text, cls) {
+    const div = document.createElement("div");
+    div.className = cls;
+    div.textContent = text;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  async function sendMessage() {
+    const question = chatText.value.trim();
+    if (!question) return;
+
+    addMessage(question, "chat-user");
+    chatText.value = "";
+
+    try {
+      const res = await fetch("http://localhost:5001/api/gemini/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          question,
+          deviceContext: aiData
+        })
+      });
+
+      const data = await res.json();
+      addMessage(data.answer || "No response", "chat-ai");
+    } catch (err) {
+      console.error(err);
+      addMessage("⚠ AI service unavailable", "chat-ai");
+    }
+  }
+
+  sendChat.addEventListener("click", sendMessage);
+
+  chatText.addEventListener("keydown", e => {
+    if (e.key === "Enter") sendMessage();
+  });
+
+  console.log("✅ Chatbot ready");
+});
+
+</script>
+
+<div id="chatbot">
+    <div id="chatHeader">Ask AI about this device</div>
+    <div id="chatMessages"></div>
+    <div id="chatInput">
+      <input id="chatText" placeholder="Ask a question..." />
+      <button id="sendChat">Send</button>
+    </div>
+  </div>
+
+</body>
+</html>
