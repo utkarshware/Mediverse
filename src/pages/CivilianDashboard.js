@@ -99,7 +99,12 @@ export default function CivilianDashboard() {
             Use your camera to scan the device and analyze readings
             automatically
           </p>
-          <button className="scan-btn">Start Scan</button>
+          <button
+  className="scan-btn"
+  onClick={() => window.location.href = "/ar-med/viewer.html"}
+>
+  Start Scan
+</button>
         </div>
       </section>
 

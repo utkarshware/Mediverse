@@ -30,7 +30,12 @@ export default function StudentDashboard() {
           <p>
             Use AR-assisted scanning to identify devices and learn how they work
           </p>
-          <button className="scan-btn">Start Scan</button>
+          <button
+  className="scan-btn"
+  onClick={() => window.location.href = "/ar-med/viewer.html"}
+>
+  Start Scan
+</button>
         </div>
       </section>
 
