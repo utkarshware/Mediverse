@@ -10,16 +10,32 @@ export default function CivilianDashboard() {
     date: "",
     time: "",
     doctorType: "",
-    notes: ""
+    notes: "",
   });
   const [appointments, setAppointments] = useState([]);
 
   const hospitals = [
-    { id: 1, name: "City Hospital", distance: "2.1 km", phone: "+91 98765 43210" },
-    { id: 2, name: "Care Clinic", distance: "3.4 km", phone: "+91 91234 56789" }
+    {
+      id: 1,
+      name: "City Hospital",
+      distance: "2.1 km",
+      phone: "+91 98765 43210",
+    },
+    {
+      id: 2,
+      name: "Care Clinic",
+      distance: "3.4 km",
+      phone: "+91 91234 56789",
+    },
   ];
 
-  const doctorTypes = ["General Checkup", "Cardiologist", "Pediatrician", "Orthopedic", "Dermatologist"];
+  const doctorTypes = [
+    "General Checkup",
+    "Cardiologist",
+    "Pediatrician",
+    "Orthopedic",
+    "Dermatologist",
+  ];
 
   const handleScheduleClick = (hospital) => {
     setSelectedHospital(hospital);
@@ -28,18 +44,22 @@ export default function CivilianDashboard() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setAppointmentData(prev => ({
+    setAppointmentData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleBookAppointment = () => {
-    if (!appointmentData.date || !appointmentData.time || !appointmentData.doctorType) {
+    if (
+      !appointmentData.date ||
+      !appointmentData.time ||
+      !appointmentData.doctorType
+    ) {
       alert("Please fill all required fields");
       return;
     }
-    
+
     const newAppointment = {
       id: Date.now(),
       hospital: selectedHospital.name,
@@ -47,17 +67,19 @@ export default function CivilianDashboard() {
       time: appointmentData.time,
       doctorType: appointmentData.doctorType,
       notes: appointmentData.notes,
-      status: "Confirmed"
+      status: "Confirmed",
     };
-    
+
     setAppointments([...appointments, newAppointment]);
     setAppointmentData({ date: "", time: "", doctorType: "", notes: "" });
     setShowAppointmentModal(false);
-    alert(`Appointment booked at ${selectedHospital.name} on ${appointmentData.date} at ${appointmentData.time}`);
+    alert(
+      `Appointment booked at ${selectedHospital.name} on ${appointmentData.date} at ${appointmentData.time}`,
+    );
   };
 
   const handleCancelAppointment = (id) => {
-    setAppointments(appointments.filter(apt => apt.id !== id));
+    setAppointments(appointments.filter((apt) => apt.id !== id));
   };
 
   const closeModal = () => {
@@ -74,27 +96,31 @@ export default function CivilianDashboard() {
         <div className="scan-card">
           <h2>Scan Medical Device</h2>
           <p>
-            Use your camera to scan the device and analyze readings automatically
+            Use your camera to scan the device and analyze readings
+            automatically
           </p>
           <button className="scan-btn">Start Scan</button>
         </div>
       </section>
 
       {/* MANUAL INPUT + AI GUIDANCE */}
-      <ManualInput />
+      <ManualInput variant="civilian" />
 
       {/* NEARBY HOSPITALS */}
       <section className="hospital-section">
         <h2>Nearby Hospitals</h2>
 
         <div className="hospital-grid">
-          {hospitals.map(hospital => (
+          {hospitals.map((hospital) => (
             <div className="hospital-card" key={hospital.id}>
               <h3>{hospital.name}</h3>
               <p>Distance: {hospital.distance}</p>
 
               <div className="hospital-actions">
-                <button className="appointment-btn" onClick={() => handleScheduleClick(hospital)}>
+                <button
+                  className="appointment-btn"
+                  onClick={() => handleScheduleClick(hospital)}
+                >
                   Schedule Appointment
                 </button>
                 <button className="emergency-btn">Call Emergency</button>
@@ -109,17 +135,30 @@ export default function CivilianDashboard() {
         <section className="appointments-section">
           <h2>Your Appointments</h2>
           <div className="appointments-list">
-            {appointments.map(apt => (
+            {appointments.map((apt) => (
               <div className="appointment-item" key={apt.id}>
                 <div className="appointment-details">
                   <h3>{apt.hospital}</h3>
-                  <p><strong>Doctor Type:</strong> {apt.doctorType}</p>
-                  <p><strong>Date:</strong> {apt.date}</p>
-                  <p><strong>Time:</strong> {apt.time}</p>
-                  {apt.notes && <p><strong>Notes:</strong> {apt.notes}</p>}
+                  <p>
+                    <strong>Doctor Type:</strong> {apt.doctorType}
+                  </p>
+                  <p>
+                    <strong>Date:</strong> {apt.date}
+                  </p>
+                  <p>
+                    <strong>Time:</strong> {apt.time}
+                  </p>
+                  {apt.notes && (
+                    <p>
+                      <strong>Notes:</strong> {apt.notes}
+                    </p>
+                  )}
                   <span className="appointment-status">{apt.status}</span>
                 </div>
-                <button className="cancel-apt-btn" onClick={() => handleCancelAppointment(apt.id)}>
+                <button
+                  className="cancel-apt-btn"
+                  onClick={() => handleCancelAppointment(apt.id)}
+                >
                   Cancel
                 </button>
               </div>
@@ -156,40 +195,44 @@ export default function CivilianDashboard() {
           <div className="appointment-modal">
             <div className="modal-header">
               <h2>Schedule Appointment at {selectedHospital?.name}</h2>
-              <button className="close-modal-btn" onClick={closeModal}>✕</button>
+              <button className="close-modal-btn" onClick={closeModal}>
+                ✕
+              </button>
             </div>
 
             <div className="modal-content">
               <div className="form-group">
                 <label>Select Doctor Type *</label>
-                <select 
-                  name="doctorType" 
+                <select
+                  name="doctorType"
                   value={appointmentData.doctorType}
                   onChange={handleInputChange}
                   className="form-input"
                 >
                   <option value="">Choose a doctor</option>
-                  {doctorTypes.map(type => (
-                    <option key={type} value={type}>{type}</option>
+                  {doctorTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
                   ))}
                 </select>
               </div>
 
               <div className="form-group">
                 <label>Select Date *</label>
-                <input 
+                <input
                   type="date"
                   name="date"
                   value={appointmentData.date}
                   onChange={handleInputChange}
                   className="form-input"
-                  min={new Date().toISOString().split('T')[0]}
+                  min={new Date().toISOString().split("T")[0]}
                 />
               </div>
 
               <div className="form-group">
                 <label>Select Time *</label>
-                <input 
+                <input
                   type="time"
                   name="time"
                   value={appointmentData.time}
@@ -200,7 +243,7 @@ export default function CivilianDashboard() {
 
               <div className="form-group">
                 <label>Additional Notes (Optional)</label>
-                <textarea 
+                <textarea
                   name="notes"
                   value={appointmentData.notes}
                   onChange={handleInputChange}
@@ -211,8 +254,12 @@ export default function CivilianDashboard() {
               </div>
 
               <div className="modal-actions">
-                <button className="btn-cancel" onClick={closeModal}>Cancel</button>
-                <button className="btn-confirm" onClick={handleBookAppointment}>Book Appointment</button>
+                <button className="btn-cancel" onClick={closeModal}>
+                  Cancel
+                </button>
+                <button className="btn-confirm" onClick={handleBookAppointment}>
+                  Book Appointment
+                </button>
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
+import CustomSelect from "./CustomSelect";
 
-export default function ManualInput() {
+export default function ManualInput({ variant }) {
   const [device, setDevice] = useState("");
   const [inputs, setInputs] = useState({});
   const [result, setResult] = useState(null);
@@ -71,21 +72,39 @@ export default function ManualInput() {
       <p>Enter your device readings to get AI-based guidance</p>
 
       {/* DEVICE SELECT */}
-      <select
-        className="manual-select"
-        value={device}
-        onChange={(e) => {
-          setDevice(e.target.value);
-          setInputs({});
-          setResult(null);
-        }}
-      >
-        <option value="">Select Medical Device</option>
-        <option value="bp">Blood Pressure Monitor</option>
-        <option value="oximeter">Pulse Oximeter</option>
-        <option value="glucose">Glucometer</option>
-        <option value="temperature">Thermometer</option>
-      </select>
+      {variant === "civilian" ? (
+        <CustomSelect
+          value={device}
+          onChange={(val) => {
+            setDevice(val);
+            setInputs({});
+            setResult(null);
+          }}
+          placeholder="Select Medical Device"
+          options={[
+            { value: "bp", label: "Blood Pressure Monitor" },
+            { value: "oximeter", label: "Pulse Oximeter" },
+            { value: "glucose", label: "Glucometer" },
+            { value: "temperature", label: "Thermometer" },
+          ]}
+        />
+      ) : (
+        <select
+          className="manual-select"
+          value={device}
+          onChange={(e) => {
+            setDevice(e.target.value);
+            setInputs({});
+            setResult(null);
+          }}
+        >
+          <option value="">Select Medical Device</option>
+          <option value="bp">Blood Pressure Monitor</option>
+          <option value="oximeter">Pulse Oximeter</option>
+          <option value="glucose">Glucometer</option>
+          <option value="temperature">Thermometer</option>
+        </select>
+      )}
 
       {/* INPUTS */}
       {device === "bp" && (

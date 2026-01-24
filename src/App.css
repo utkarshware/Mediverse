@@ -1307,6 +1307,82 @@ body {
     0 16px 32px rgba(103, 232, 249, 0.25);
 }
 
+/* Custom Select (Civilian) */
+.custom-select {
+  position: relative;
+}
+
+.custom-select-toggle {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-select-caret {
+  color: var(--heading-text);
+  margin-left: 12px;
+}
+
+.custom-select-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, var(--card-bg) 0%, #eaf9fc 100%);
+  border: 1px solid var(--divider-border);
+  border-radius: 14px;
+  box-shadow: 0 20px 48px rgba(103, 232, 249, 0.25);
+  padding: 8px;
+  z-index: 10;
+}
+
+.custom-select-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--heading-text);
+}
+
+.custom-select-option .option-desc {
+  display: none;
+}
+
+.custom-select-option:hover,
+.custom-select-option.highlight {
+  background: #dff6fb;
+}
+
+.custom-select-option.selected {
+  border: 1px solid var(--hover-subtle);
+}
+
+/* Civilian-specific dropdown styling */
+.manual-input-section .manual-select-civilian {
+  background: linear-gradient(135deg, var(--card-bg) 0%, #d9f6fb 100%);
+  border: 2px solid var(--divider-border);
+  color: var(--heading-text);
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  box-shadow: 0 14px 36px rgba(103, 232, 249, 0.25);
+}
+
+.manual-input-section .manual-select-civilian:hover {
+  border-color: var(--hover-subtle);
+  box-shadow: 0 18px 42px rgba(103, 232, 249, 0.32);
+}
+
+.manual-input-section .manual-select-civilian:focus {
+  border-color: var(--hover-subtle);
+  box-shadow:
+    0 0 0 5px rgba(103, 232, 249, 0.35),
+    0 22px 48px rgba(103, 232, 249, 0.38);
+}
+
 .input-row {
   display: flex;
   gap: 12px;
