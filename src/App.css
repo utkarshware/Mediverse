@@ -1,14 +1,30 @@
 :root {
-  --green-dark: #0B5D57;
-  --green-main: #0CA6A6;
-  --green-soft: #7FE3D8;
-  --green-light: #CAF3C5;
+  /* PRIMARY COLORS */
+  --card-bg: #E6F6F7;
+  --divider-border: #BFE8EA;
+  --hover-subtle: #67E8F9;
 
-  --bg-soft: #F2FBFA;
-  --card-soft: #E8F6F4;
+  /* TEXT COLORS */
+  --heading-text: #0F172A;
+  --body-text: #334155;
+  --muted-text: #64748B;
 
-  --text-main: #063F3B;
-  --text-muted: #4B7C78;
+  /* SECONDARY COLORS (UI Depth) */
+  --card-bg-secondary: #E6F6F7;
+  --divider-border-secondary: #BFE8EA;
+  --hover-subtle-secondary: #67E8F9;
+
+  /* Legacy variables for backward compatibility */
+  --green-dark: #0F172A;
+  --green-main: #67E8F9;
+  --green-soft: #BFE8EA;
+  --green-light: #E6F6F7;
+
+  --bg-soft: #E6F6F7;
+  --card-soft: #E6F6F7;
+
+  --text-main: #334155;
+  --text-muted: #64748B;
 }
 
 /* RESET */
@@ -20,8 +36,8 @@
 
 body {
   font-family: "Segoe UI", Arial, sans-serif;
-  background: #f9fafb;
-  color: #111827;
+  background: var(--card-bg);
+  color: var(--heading-text);
 }
 
 .container {
@@ -65,14 +81,14 @@ body {
 .navbar-links a,
 .navbar-links .nav-link {
   text-decoration: none;
-  color: #111827;
+  color: var(--body-text);
   font-weight: 500;
   cursor: pointer;
 }
 
 .navbar-links a:hover,
 .navbar-links .nav-link:hover {
-  color: #2DBE60;
+  color: var(--hover-subtle);
 }
 /* Navbar color polish */
 .navbar {
@@ -103,8 +119,8 @@ body {
 
 /* LOGIN BUTTON (RESTORED) */
 .nav-login-btn {
-  background: #2DBE60;
-  color: white;
+  background: var(--hover-subtle);
+  color: var(--heading-text);
   border: none;
   padding: 8px 18px;
   border-radius: 6px;
@@ -113,7 +129,7 @@ body {
 }
 
 .nav-login-btn:hover {
-  background: #25a955;
+  background: var(--divider-border);
 }
 
 /* =======================
@@ -147,18 +163,90 @@ body {
   font-size: 28px;
   font-weight: 500;
   letter-spacing: 4px;
-  color: green /* Blood Sync red accent */
+  background: linear-gradient(135deg, var(--hover-subtle) 0%, var(--divider-border) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: slideInLeft 0.8s ease-out;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.hero-welcome:hover {
+  letter-spacing: 8px;
+  transform: scale(1.1) translateY(-5px);
+  filter: drop-shadow(0 0 15px rgba(103, 232, 249, 0.6));
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .hero-brand {
-  color: #ffffff;
+  color: var(--hover-subtle);
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 20px rgba(103, 232, 249, 0.4);
+  animation: fadeInUp 1s ease-out 0.2s both;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  display: inline-block;
+}
+
+.hero-brand:hover {
+  transform: scale(1.15) skewY(-2deg);
+  text-shadow: 0 0 30px rgba(103, 232, 249, 0.8), 0 0 60px rgba(103, 232, 249, 0.4);
+  letter-spacing: 4px;
+  filter: brightness(1.3);
 }
 
 .hero-subtitle {
   font-size: 22px;
-  color: #E0E0E0;
+  color: var(--hover-subtle);
   margin-top: 10px;
   letter-spacing: 1px;
+  animation: fadeInUp 1.2s ease-out 0.4s both;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.hero-subtitle:hover {
+  letter-spacing: 3px;
+  transform: translateY(-3px);
+  filter: drop-shadow(0 0 10px rgba(103, 232, 249, 0.5));
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive */
@@ -189,11 +277,11 @@ body {
    HOW IT WORKS
 ======================= */
 .how {
-  background: #ffffff;
+  background: var(--card-bg);
 }
 
 .section-tag {
-  color: #2DBE60;
+  color: var(--hover-subtle);
   font-size: 13px;
   font-weight: 700;
   margin-bottom: 8px;
@@ -211,7 +299,7 @@ body {
 }
 
 .how-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 16px 40px rgba(0,0,0,0.08);
@@ -240,7 +328,7 @@ body {
 .how-card span {
   padding: 0 20px 20px;
   display: inline-block;
-  color: #2DBE60;
+  color: var(--hover-subtle);
   font-weight: 600;
   cursor: pointer;
 }
@@ -248,7 +336,7 @@ body {
    FEATURES
 ======================= */
 .features {
-  background: #f9fafb;
+  background: var(--card-bg);
 }
 
 .feature-grid {
@@ -258,7 +346,7 @@ body {
 }
 
 .feature-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 16px 40px rgba(0,0,0,0.08);
@@ -282,7 +370,7 @@ body {
    CONTACT
 ======================= */
 .contact {
-  background: white;
+  background: var(--card-bg);
 }
 
 .contact-grid {
@@ -296,21 +384,21 @@ body {
   width: 100%;
   padding: 14px;
   margin-bottom: 14px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--divider-border);
   border-radius: 4px;
 }
 
 .contact-form button {
-  background: #2DBE60;
-  color: white;
+  background: var(--hover-subtle);
+  color: var(--heading-text);
   border: none;
   padding: 14px;
   width: 100%;
   font-weight: 600;
 }
 .footer {
-  background: #111827;
-  color: #9ca3af;
+  background: var(--heading-text);
+  color: var(--muted-text);
   text-align: center;
   padding: 32px;
 }
@@ -319,7 +407,7 @@ body {
 ======================= */
 .login-page {
   min-height: 100vh;
-  background: #f9fafb;
+  background: var(--card-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -327,7 +415,7 @@ body {
 }
 
 .login-card {
-  background: white;
+  background: var(--card-bg);
   padding: 50px;
   border-radius: 16px;
   width: 100%;
@@ -342,7 +430,7 @@ body {
 }
 
 .login-card p {
-  color: #6b7280;
+  color: var(--muted-text);
   margin-bottom: 40px;
 }
 
@@ -353,7 +441,7 @@ body {
 }
 
 .login-option {
-  background: #f9fafb;
+  background: var(--divider-border);
   border-radius: 14px;
   padding: 28px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -379,13 +467,13 @@ body {
 
 .login-option p {
   font-size: 14px;
-  color: #6b7280;
+  color: var(--muted-text);
   margin-bottom: 18px;
 }
 
 .login-option button {
-  background: #2DBE60;
-  color: white;
+  background: var(--hover-subtle);
+  color: var(--heading-text);
   border: none;
   padding: 10px 22px;
   border-radius: 6px;
@@ -394,7 +482,7 @@ body {
 }
 
 .login-option button:hover {
-  background: #25a955;
+  background: var(--divider-border);
 }
 
 /* MOBILE */
@@ -408,7 +496,7 @@ body {
    STUDENT DASHBOARD
 ======================= */
 .student-dashboard {
-  background: #f9fafb;
+  background: var(--card-bg);
   min-height: 100vh;
 }
 
@@ -416,7 +504,7 @@ body {
 .student-header {
   padding: 60px 20px;
   text-align: center;
-  background: white;
+  background: var(--card-bg);
 }
 
 .student-header h1 {
@@ -425,7 +513,7 @@ body {
 }
 
 .student-header p {
-  color: #6b7280;
+  color: var(--muted-text);
 }
 
 /* SCAN SECTION */
@@ -436,7 +524,7 @@ body {
 }
 
 .scan-card {
-  background: white;
+  background: var(--card-bg);
   padding: 40px;
   border-radius: 16px;
   max-width: 600px;
@@ -446,8 +534,8 @@ body {
 
 .scan-btn {
   margin-top: 20px;
-  background: #2DBE60;
-  color: white;
+  background: var(--hover-subtle);
+  color: var(--heading-text);
   border: none;
   padding: 14px 28px;
   border-radius: 8px;
@@ -457,7 +545,7 @@ body {
 }
 
 .scan-btn:hover {
-  background: #25a955;
+  background: var(--divider-border);
 }
 
 /* LEARN SECTION */
@@ -477,7 +565,7 @@ body {
 }
 
 .learn-card {
-  background: white;
+  background: var(--card-bg);
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 16px 36px rgba(0,0,0,0.08);
@@ -497,14 +585,14 @@ body {
 .learn-card p {
   font-size: 14px;
   padding: 0 16px;
-  color: #6b7280;
+  color: var(--muted-text);
 }
 
 .learn-card button {
   margin: 16px 0 24px;
   background: transparent;
-  border: 2px solid #2DBE60;
-  color: #2DBE60;
+  border: 2px solid var(--hover-subtle);
+  color: var(--hover-subtle);
   padding: 8px 18px;
   border-radius: 6px;
   font-weight: 600;
@@ -512,8 +600,8 @@ body {
 }
 
 .learn-card button:hover {
-  background: #2DBE60;
-  color: white;
+  background: var(--hover-subtle);
+  color: var(--heading-text);
 }
 /* =========================
    CIVILIAN NAVBAR
@@ -525,10 +613,10 @@ body {
   padding: 16px 40px;
   background: linear-gradient(
     120deg,
-    #0B5D57,
-    #0CA6A6
+    #67E8F9,
+    #BFE8EA
   );
-  color: white;
+  color: var(--heading-text);
 }
 
 .civilian-navbar .logo {
@@ -538,8 +626,8 @@ body {
 }
 
 .profile-btn {
-  background: #CAF3C5;
-  color: #063F3B;
+  background: var(--divider-border);
+  color: var(--heading-text);
   border: none;
   padding: 10px 20px;
   border-radius: 999px;
@@ -548,7 +636,7 @@ body {
 }
 
 .profile-btn:hover {
-  background: #7FE3D8;
+  background: var(--hover-subtle);
 }
 
 /* =========================
@@ -557,7 +645,7 @@ body {
 .civilian-header {
   text-align: center;
   padding: 60px 20px;
-  background: #EAF7F5;
+  background: var(--card-bg);
 }
 
 .civilian-header h1 {
@@ -566,7 +654,7 @@ body {
 }
 
 .civilian-header p {
-  color: #4B7C78;
+  color: var(--body-text);
 }
 
 /* =========================
@@ -603,6 +691,7 @@ body {
 ========================= */
 .hospital-section {
   padding: 60px 20px;
+  background: var(--card-bg);
 }
 
 .hospital-grid {
@@ -624,7 +713,8 @@ body {
 
 .appointment-btn {
   flex: 1;
-  background: #7FE3D8;
+  background: var(--divider-border);
+  color: var(--heading-text);
   border: none;
   padding: 10px;
   border-radius: 8px;
@@ -634,8 +724,8 @@ body {
 
 .emergency-btn {
   flex: 1;
-  background: #E53935;
-  color: white;
+  background: var(--hover-subtle);
+  color: var(--heading-text);
   border: none;
   padding: 10px;
   border-radius: 8px;
