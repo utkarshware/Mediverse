@@ -18,9 +18,8 @@ export default function Hero() {
           <span className="hero-brand">MEDIVERSE</span>
         </h1>
 
-        <p className="hero-subtitle">
-          Your AI Health Partner
-        </p>
+        <p className="hero-subtitle">Your AI Health Partner</p>
+        <button className="hero-scan-btn">Scan Device</button>
       </div>
     </section>
   );
