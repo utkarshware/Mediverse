@@ -33,8 +33,7 @@ export default function ManualInput() {
           "Oxygen level is dangerously low. Seek emergency medical help.";
       } else if (spo2 < 94) {
         status = "Caution";
-        message =
-          "Oxygen level slightly low. Rest and monitor closely.";
+        message = "Oxygen level slightly low. Rest and monitor closely.";
       }
     }
 
@@ -47,8 +46,7 @@ export default function ManualInput() {
           "Very high blood sugar. Immediate medical attention recommended.";
       } else if (sugar >= 140) {
         status = "Caution";
-        message =
-          "Elevated blood sugar. Follow diet control and monitor.";
+        message = "Elevated blood sugar. Follow diet control and monitor.";
       }
     }
 
@@ -57,12 +55,10 @@ export default function ManualInput() {
 
       if (temp >= 39) {
         status = "Critical";
-        message =
-          "High fever detected. Consult a doctor immediately.";
+        message = "High fever detected. Consult a doctor immediately.";
       } else if (temp >= 37.5) {
         status = "Caution";
-        message =
-          "Mild fever. Rest and monitor temperature.";
+        message = "Mild fever. Rest and monitor temperature.";
       }
     }
 
@@ -76,6 +72,7 @@ export default function ManualInput() {
 
       {/* DEVICE SELECT */}
       <select
+        className="manual-select"
         value={device}
         onChange={(e) => {
           setDevice(e.target.value);
@@ -96,9 +93,7 @@ export default function ManualInput() {
           <input
             type="number"
             placeholder="Systolic (mmHg)"
-            onChange={(e) =>
-              setInputs({ ...inputs, systolic: e.target.value })
-            }
+            onChange={(e) => setInputs({ ...inputs, systolic: e.target.value })}
           />
           <input
             type="number"
@@ -115,14 +110,9 @@ export default function ManualInput() {
           <input
             type="number"
             placeholder="SpO₂ (%)"
-            onChange={(e) =>
-              setInputs({ ...inputs, spo2: e.target.value })
-            }
+            onChange={(e) => setInputs({ ...inputs, spo2: e.target.value })}
           />
-          <input
-            type="number"
-            placeholder="Pulse Rate (bpm)"
-          />
+          <input type="number" placeholder="Pulse Rate (bpm)" />
         </div>
       )}
 
@@ -130,9 +120,7 @@ export default function ManualInput() {
         <input
           type="number"
           placeholder="Blood Sugar (mg/dL)"
-          onChange={(e) =>
-            setInputs({ ...inputs, glucose: e.target.value })
-          }
+          onChange={(e) => setInputs({ ...inputs, glucose: e.target.value })}
         />
       )}
 
@@ -140,9 +128,7 @@ export default function ManualInput() {
         <input
           type="number"
           placeholder="Temperature (°C)"
-          onChange={(e) =>
-            setInputs({ ...inputs, temp: e.target.value })
-          }
+          onChange={(e) => setInputs({ ...inputs, temp: e.target.value })}
         />
       )}
 
