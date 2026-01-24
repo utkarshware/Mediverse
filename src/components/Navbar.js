@@ -21,7 +21,9 @@ export default function Navbar({ onContactClick }) {
   return (
     <nav className="navbar">
       <div className="container navbar-inner">
-        <div className="navbar-logo" onClick={goHome}>MEDIVERSE</div>
+        <div className="navbar-logo" onClick={goHome}>
+          MEDIVERSE
+        </div>
 
         <div className="navbar-links">
           <span className="nav-link" onClick={goHome}>
