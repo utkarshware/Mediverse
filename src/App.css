@@ -716,7 +716,7 @@ body {
 }
 
 .scan-card {
-  background: linear-gradient(135deg, var(--divider-border) 0%, rgba(191, 232, 234, 0.8) 100%);
+  background: linear-gradient(135deg, #BFE8EA 0%, #A8DEDE 100%);
   padding: 40px;
   border-radius: 18px;
   max-width: 600px;
@@ -991,7 +991,7 @@ body {
 .scan-card {
   max-width: 420px;
   text-align: center;
-  background: linear-gradient(135deg, #67E8F9 0%, #4DD7EC 100%);
+  background: linear-gradient(135deg, #E6F6F7 0%, #D0EEF0 100%);
   padding: 40px;
   border-radius: 16px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.1);
@@ -1543,4 +1543,540 @@ body {
 
 .result-box.critical {
   background: #FDECEA;
+}
+
+/* ==========================
+   COMPREHENSIVE RESPONSIVE DESIGN
+========================== */
+
+/* MOBILE (320px - 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  .navbar-links {
+    gap: 12px;
+  }
+
+  .navbar-logo {
+    font-size: 16px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .login-container {
+    padding: 20px;
+  }
+
+  .login-header h2 {
+    font-size: 20px;
+  }
+
+  .login-options {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .login-option {
+    padding: 20px;
+  }
+
+  .scan-card {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .learn-card {
+    padding: 20px;
+  }
+
+  .student-nav-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navbar-logo {
+    font-size: 14px;
+  }
+
+  .profile-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .input-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .manual-input-section {
+    padding: 20px;
+    margin: 30px 12px;
+  }
+
+  .hospital-card {
+    padding: 15px;
+  }
+
+  .hospital-card h3 {
+    font-size: 14px;
+  }
+
+  .hospital-card p {
+    font-size: 12px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .summary-card {
+    padding: 12px;
+  }
+}
+
+/* SMALL TABLET (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .navbar-links {
+    gap: 16px;
+  }
+
+  .navbar-logo {
+    font-size: 18px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .login-container {
+    padding: 30px 20px;
+  }
+
+  .login-header h2 {
+    font-size: 24px;
+  }
+
+  .login-options {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .login-option {
+    padding: 30px;
+  }
+
+  .scan-card {
+    padding: 30px;
+    max-width: 100%;
+  }
+
+  .learn-card {
+    padding: 25px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .input-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .manual-input-section {
+    padding: 30px;
+    margin: 40px 20px;
+  }
+
+  .hospital-card {
+    padding: 20px;
+  }
+
+  .hospital-card h3 {
+    font-size: 16px;
+  }
+
+  .hospital-card p {
+    font-size: 14px;
+  }
+
+  .student-nav-container {
+    flex-wrap: wrap;
+  }
+}
+
+/* LARGE TABLET & SMALL DESKTOP (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .hero-title {
+    font-size: 48px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .login-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .learn-section .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .input-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hospital-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* DESKTOP (1025px and above) */
+@media (min-width: 1025px) {
+  .container {
+    padding: 0 24px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .learn-section .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hospital-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .input-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* EXTRA LARGE DESKTOP (1441px and above) */
+@media (min-width: 1441px) {
+  .container {
+    max-width: 1400px;
+    padding: 0 32px;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+
+  .scan-card {
+    max-width: 100%;
+  }
+}
+
+/* ==========================
+   APPOINTMENT SCHEDULING
+========================== */
+.appointments-section {
+  padding: 60px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.appointments-section h2 {
+  color: var(--heading-text);
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.appointments-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.appointment-item {
+  background: linear-gradient(135deg, #E6F6F7 0%, #D0EEF0 100%);
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  animation: slideInUp 0.6s ease-out;
+}
+
+.appointment-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.appointment-details h3 {
+  color: var(--heading-text);
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.appointment-details p {
+  color: var(--body-text);
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.appointment-status {
+  display: inline-block;
+  background: #4CAF50;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.cancel-apt-btn {
+  background: #E53935;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.cancel-apt-btn:hover {
+  background: #C62828;
+  transform: scale(1.05);
+}
+
+/* MODAL OVERLAY */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* APPOINTMENT MODAL */
+.appointment-modal {
+  background: white;
+  border-radius: 20px;
+  padding: 0;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.2);
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  background: linear-gradient(135deg, var(--card-bg) 0%, var(--divider-border) 100%);
+  padding: 24px;
+  border-bottom: 1px solid var(--divider-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px 20px 0 0;
+}
+
+.modal-header h2 {
+  color: var(--heading-text);
+  font-size: 20px;
+  margin: 0;
+}
+
+.close-modal-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--heading-text);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-radius: 50%;
+}
+
+.close-modal-btn:hover {
+  background: rgba(103, 232, 249, 0.2);
+  transform: scale(1.1);
+}
+
+.modal-content {
+  padding: 32px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  color: var(--heading-text);
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid var(--divider-border);
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--heading-text);
+  background: white;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--hover-subtle);
+  box-shadow: 0 0 0 4px rgba(103, 232, 249, 0.1);
+  background: white;
+}
+
+.form-input::placeholder {
+  color: var(--muted-text);
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid var(--divider-border);
+  margin-top: 24px;
+}
+
+.btn-cancel,
+.btn-confirm {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.btn-cancel {
+  background: var(--divider-border);
+  color: var(--heading-text);
+}
+
+.btn-cancel:hover {
+  background: var(--hover-subtle);
+  color: white;
+}
+
+.btn-confirm {
+  background: linear-gradient(135deg, var(--hover-subtle) 0%, #4DD7EC 100%);
+  color: white;
+  min-width: 140px;
+}
+
+.btn-confirm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(103, 232, 249, 0.3);
+}
+
+/* RESPONSIVE MODAL */
+@media (max-width: 768px) {
+  .appointment-modal {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .modal-header h2 {
+    font-size: 18px;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+
+  .appointment-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cancel-apt-btn {
+    width: 100%;
+    margin-top: 12px;
+  }
 }

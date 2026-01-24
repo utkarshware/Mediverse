@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 export default function StudentDashboard() {
   const navigate = useNavigate();
@@ -75,6 +76,7 @@ export default function StudentDashboard() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
