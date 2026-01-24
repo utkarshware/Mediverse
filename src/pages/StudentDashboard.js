@@ -1,11 +1,22 @@
+import { useNavigate } from "react-router-dom";
+
 export default function StudentDashboard() {
+  const navigate = useNavigate();
+
   return (
     <div className="student-dashboard">
-      {/* HEADER */}
-      <section className="student-header">
-        <h1>Student Dashboard</h1>
-        <p>Learn medical devices & understand critical points safely</p>
-      </section>
+      {/* STUDENT NAVBAR */}
+      <nav className="student-navbar">
+        <div className="navbar-container">
+          <div className="navbar-logo">
+            <span>Mediverse</span>
+            <span className="badge-text">Student</span>
+          </div>
+          <button className="profile-btn" onClick={() => navigate("/profile")}>
+            👤 My Profile
+          </button>
+        </div>
+      </nav>
 
       {/* SCAN SECTION */}
       <section className="scan-section">

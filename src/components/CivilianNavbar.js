@@ -5,14 +5,13 @@ export default function CivilianNavbar() {
 
   return (
     <nav className="civilian-navbar">
-      <h2 className="logo">MEDIVERSE</h2>
-
-      <div className="nav-right">
-        <button
-          className="profile-btn"
-          onClick={() => navigate("/civilian/profile")}
-        >
-          My Profile
+      <div className="navbar-container">
+        <div className="navbar-logo">
+          <span>Mediverse</span>
+          <span className="badge-text">Civilian</span>
+        </div>
+        <button className="profile-btn" onClick={() => navigate("/civilian/profile")}>
+          👤 My Profile
         </button>
       </div>
     </nav>

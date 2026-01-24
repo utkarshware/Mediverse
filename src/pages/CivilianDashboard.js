@@ -7,14 +7,6 @@ export default function CivilianDashboard() {
       {/* CIVILIAN NAVBAR */}
       <CivilianNavbar />
 
-      {/* HEADER */}
-      <section className="civilian-header">
-        <h1>Civilian Health Dashboard</h1>
-        <p>
-          Scan medical devices or manually enter readings to get health guidance
-        </p>
-      </section>
-
       {/* SCAN SECTION */}
       <section className="scan-section">
         <div className="scan-card">
