@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import studentImg from "../assets/student.jpg";
+import everyoneImg from "../assets/everyone.jpeg";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -14,15 +16,12 @@ export default function Login() {
 
         <div className="login-options">
           {/* STUDENT */}
-          <div className="login-option student-option">
+          <div
+            className="login-option student-option"
+            onClick={() => navigate("/student-auth")}
+          >
             <div className="image-wrapper">
-              <img
-                src="https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt="Student Learning Medical Devices"
-                onError={(e) => {
-                  e.target.src = "https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=400";
-                }}
-              />
+              <img src={studentImg} alt="Medical Student Learning" />
               <div className="image-overlay">
                 <span className="badge">For Students</span>
               </div>
@@ -30,36 +29,29 @@ export default function Login() {
             <div className="option-content">
               <h3>Student</h3>
               <p>
-                Master medical devices, learn critical handling techniques, and build expertise with AI guidance
+                Learn medical device usage with AI-guided training and AR
+                simulations.
               </p>
-              <button className="student-btn" onClick={() => navigate("/student")}>
-                Continue as Student
-              </button>
             </div>
           </div>
 
           {/* CIVILIAN */}
-          <div className="login-option civilian-option">
+          <div
+            className="login-option civilian-option"
+            onClick={() => navigate("/civilian-auth")}
+          >
             <div className="image-wrapper">
-              <img
-                src="https://images.pexels.com/photos/3962286/pexels-photo-3962286.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt="Civilian Health Support"
-                onError={(e) => {
-                  e.target.src = "https://images.pexels.com/photos/3962286/pexels-photo-3962286.jpeg?auto=compress&cs=tinysrgb&w=400";
-                }}
-              />
+              <img src={everyoneImg} alt="Health Monitoring and Care" />
               <div className="image-overlay">
                 <span className="badge">For Everyone</span>
               </div>
             </div>
             <div className="option-content">
-              <h3>Civilian</h3>
+              <h3>Everyone</h3>
               <p>
-                Scan devices, analyze health readings, get instant AI-powered health insights and support
+                Scan devices, understand readings, get AI-driven guidance,
+                emergency contacts, and instant appointment booking.
               </p>
-              <button className="civilian-btn" onClick={() => navigate("/civilian")}>
-                Continue as Civilian
-              </button>
             </div>
           </div>
         </div>

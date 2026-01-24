@@ -1,3 +1,5 @@
+import emergencyImg from "../assets/emergency.png";
+
 export default function HowItWorks() {
   return (
     <section className="how" id="how">
@@ -40,11 +42,7 @@ export default function HowItWorks() {
           </div>
 
           <div className="how-card">
-            <img
-              src="https://images.unsplash.com/photo-1584467735871-b0f7c2b3f3b6?auto=format&fit=crop&w=1200&q=80"
-              alt="Emergency assistance"
-              loading="lazy"
-            />
+            <img src={emergencyImg} alt="Emergency assistance" />
             <h4>Step 4: Emergency assistance activation</h4>
             <p>Activate emergency assistance with ease.</p>
             <span>Learn more</span>

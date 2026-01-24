@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import bpMonitor from "../assets/Blood Pressure Monitor.jpg";
+import glucometer from "../assets/Glucometer.jpg";
+import thermometer from "../assets/Thermometer.jpg";
+import pulseOximeter from "../assets/Pulse Oximeter.jpg";
 
 export default function StudentDashboard() {
   const navigate = useNavigate();
@@ -36,44 +40,28 @@ export default function StudentDashboard() {
 
         <div className="learn-grid">
           <div className="learn-card">
-            <img
-              src="https://images.unsplash.com/photo-1580281657521-6b9c3f0b87f4?auto=format&fit=crop&w=1200&q=80"
-              alt="Blood Pressure Monitor"
-              loading="lazy"
-            />
+            <img src={bpMonitor} alt="Blood Pressure Monitor" />
             <h3>Blood Pressure Monitor</h3>
             <p>Understand readings, cuff placement & critical values</p>
             <button>Learn</button>
           </div>
 
           <div className="learn-card">
-            <img
-              src="https://images.unsplash.com/photo-1584036561584-b03c19da874c?auto=format&fit=crop&w=1200&q=80"
-              alt="Glucometer"
-              loading="lazy"
-            />
+            <img src={glucometer} alt="Glucometer" />
             <h3>Glucometer</h3>
             <p>Learn glucose testing steps & normal ranges</p>
             <button>Learn</button>
           </div>
 
           <div className="learn-card">
-            <img
-              src="https://images.unsplash.com/photo-1584467735871-b0f7c2b3f3b6?auto=format&fit=crop&w=1200&q=80"
-              alt="Thermometer"
-              loading="lazy"
-            />
+            <img src={thermometer} alt="Thermometer" />
             <h3>Thermometer</h3>
             <p>Correct usage & fever interpretation</p>
             <button>Learn</button>
           </div>
 
           <div className="learn-card">
-            <img
-              src="https://images.unsplash.com/photo-1580281658391-0b6c5c1db3c6?auto=format&fit=crop&w=1200&q=80"
-              alt="Pulse Oximeter"
-              loading="lazy"
-            />
+            <img src={pulseOximeter} alt="Pulse Oximeter" />
             <h3>Pulse Oximeter</h3>
             <p>Oxygen levels & emergency thresholds</p>
             <button>Learn</button>
