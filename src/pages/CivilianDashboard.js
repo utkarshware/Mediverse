@@ -21,6 +21,7 @@ export default function CivilianDashboard() {
       distance: "2.1 km",
       phone: "+91 98765 43210",
     },
+    
     {
       id: 2,
       name: "Care Clinic",
