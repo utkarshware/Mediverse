@@ -6,7 +6,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "*", // allow requests from anywhere (OK for demo/hackathon)
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type"]
+}));
 app.use(express.json({ limit: "20mb" }));
 
 const GEMINI_URL =
