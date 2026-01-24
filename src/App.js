@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import "./App.css"; 
 
 import Landing from "./pages/Landing";
@@ -9,7 +9,7 @@ import StudentDashboard from "./pages/StudentDashboard";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
@@ -17,7 +17,7 @@ function App() {
         <Route path="/civilian/profile" element={<CivilianProfile />} />
         <Route path="/student" element={<StudentDashboard />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
