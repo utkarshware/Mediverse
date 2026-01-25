@@ -1,6 +1,10 @@
 import heroBg from "../assets/hero-bg.jpg";
 
 export default function Hero() {
+  const handleScanClick = () => {
+    window.location.href = "http://localhost:3001";
+  };
+
   return (
     <section
       className="hero-section"
@@ -19,7 +23,9 @@ export default function Hero() {
         </h1>
 
         <p className="hero-subtitle">Your AI Health Partner</p>
-        <button className="hero-scan-btn">Scan Device</button>
+        <button className="hero-scan-btn" onClick={handleScanClick}>
+          Scan Device
+        </button>
       </div>
     </section>
   );

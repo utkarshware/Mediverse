@@ -31,11 +31,11 @@ export default function StudentDashboard() {
             Use AR-assisted scanning to identify devices and learn how they work
           </p>
           <button
-  className="scan-btn"
-  onClick={() => window.location.href = "/ar-med/viewer.html"}
->
-  Start Scan
-</button>
+            className="scan-btn"
+            onClick={() => (window.location.href = "http://localhost:3001")}
+          >
+            Start Scan
+          </button>
         </div>
       </section>
 

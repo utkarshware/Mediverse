@@ -21,7 +21,7 @@ export default function CivilianDashboard() {
       distance: "2.1 km",
       phone: "+91 98765 43210",
     },
-    
+
     {
       id: 2,
       name: "Care Clinic",
@@ -101,11 +101,11 @@ export default function CivilianDashboard() {
             automatically
           </p>
           <button
-  className="scan-btn"
-  onClick={() => window.location.href = "/ar-med/viewer.html"}
->
-  Start Scan
-</button>
+            className="scan-btn"
+            onClick={() => (window.location.href = "http://localhost:3001")}
+          >
+            Start Scan
+          </button>
         </div>
       </section>
 
