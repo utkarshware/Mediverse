@@ -32,7 +32,10 @@ export default function StudentDashboard() {
           </p>
           <button
             className="scan-btn"
-            onClick={() => (window.location.href = "http://localhost:3001")}
+            onClick={() =>
+              (window.location.href =
+                process.env.REACT_APP_AR_MED_URL || "http://localhost:3001")
+            }
           >
             Start Scan
           </button>

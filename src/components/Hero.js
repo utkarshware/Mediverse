@@ -2,7 +2,8 @@ import heroBg from "../assets/hero-bg.jpg";
 
 export default function Hero() {
   const handleScanClick = () => {
-    window.location.href = "http://localhost:3001";
+    window.location.href =
+      process.env.REACT_APP_AR_MED_URL || "http://localhost:3001";
   };
 
   return (
