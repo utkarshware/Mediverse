@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Mediverse/static/css/main.ab0b1767.css",
+    "main.js": "/Mediverse/static/js/main.d86b5528.js",
+    "static/js/453.1dc5b4c3.chunk.js": "/Mediverse/static/js/453.1dc5b4c3.chunk.js",
+    "static/media/hero-bg.jpg": "/Mediverse/static/media/hero-bg.1ce3a2acd16c9ee30f8a.jpg",
+    "static/media/everyone.jpeg": "/Mediverse/static/media/everyone.95b981de3885321c1914.jpeg",
+    "static/media/emergency.png": "/Mediverse/static/media/emergency.768ef400b0690a3be48f.png",
+    "static/media/Glucometer.jpg": "/Mediverse/static/media/Glucometer.9a10f062e11c9cf489f2.jpg",
+    "static/media/Blood Pressure Monitor.jpg": "/Mediverse/static/media/Blood Pressure Monitor.c902b8059cc606136d6d.jpg",
+    "static/media/smartreading.png": "/Mediverse/static/media/smartreading.dc20c30a59a832879fb8.png",
+    "static/media/aidrivensolution.png": "/Mediverse/static/media/aidrivensolution.6a6f2768dd04a028c8ad.png",
+    "static/media/student.jpg": "/Mediverse/static/media/student.b61038c637c615654c54.jpg",
+    "static/media/Pulse Oximeter.jpg": "/Mediverse/static/media/Pulse Oximeter.97f6b3a3038911d96674.jpg",
+    "static/media/Thermometer.jpg": "/Mediverse/static/media/Thermometer.236f36e56ff7712b4a48.jpg",
+    "index.html": "/Mediverse/index.html",
+    "main.ab0b1767.css.map": "/Mediverse/static/css/main.ab0b1767.css.map",
+    "main.d86b5528.js.map": "/Mediverse/static/js/main.d86b5528.js.map",
+    "453.1dc5b4c3.chunk.js.map": "/Mediverse/static/js/453.1dc5b4c3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ab0b1767.css",
+    "static/js/main.d86b5528.js"
+  ]
+}

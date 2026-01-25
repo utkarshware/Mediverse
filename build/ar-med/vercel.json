@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd public/ar-med && npm install && npm run build",
+  "outputDirectory": "public/ar-med/build",
+  "installCommand": "cd public/ar-med && npm install"
+}
