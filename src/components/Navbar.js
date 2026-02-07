@@ -99,7 +99,7 @@ export default function Navbar({ onContactClick }) {
               </svg>
             </span>
             <span>Contact</span>
-          </a>
+          </button>
 
           <button className="nav-cta" onClick={() => navigate("/login")}>
             <span>Get Started</span>
