@@ -6237,6 +6237,25 @@ textarea.form-input {
   transform: translateX(5px);
 }
 
+.footer-link-btn {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.footer-link-btn:hover {
+  color: #67e8f9;
+  transform: translateX(5px);
+}
+
 .footer-newsletter {
   display: flex;
   align-items: center;
@@ -6334,6 +6353,21 @@ textarea.form-input {
 }
 
 .footer-bottom-links a:hover {
+  color: #67e8f9;
+}
+
+.footer-bottom-btn {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.footer-bottom-btn:hover {
   color: #67e8f9;
 }
 

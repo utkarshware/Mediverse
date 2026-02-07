@@ -38,7 +38,7 @@ export default function Navbar({ onContactClick }) {
         </div>
 
         <div className={`navbar-nav ${isMobileMenuOpen ? "open" : ""}`}>
-          <a className="nav-item" onClick={goHome}>
+          <button type="button" className="nav-item" onClick={goHome}>
             <span className="nav-icon">
               <svg
                 viewBox="0 0 24 24"
@@ -51,9 +51,9 @@ export default function Navbar({ onContactClick }) {
               </svg>
             </span>
             <span>Home</span>
-          </a>
+          </button>
 
-          <a className="nav-item" onClick={() => scrollToSection("services")}>
+          <button type="button" className="nav-item" onClick={() => scrollToSection("services")}>
             <span className="nav-icon">
               <svg
                 viewBox="0 0 24 24"
@@ -68,9 +68,9 @@ export default function Navbar({ onContactClick }) {
               </svg>
             </span>
             <span>Services</span>
-          </a>
+          </button>
 
-          <a className="nav-item" onClick={() => scrollToSection("how")}>
+          <button type="button" className="nav-item" onClick={() => scrollToSection("how")}>
             <span className="nav-icon">
               <svg
                 viewBox="0 0 24 24"
@@ -84,9 +84,9 @@ export default function Navbar({ onContactClick }) {
               </svg>
             </span>
             <span>How It Works</span>
-          </a>
+          </button>
 
-          <a className="nav-item" onClick={() => scrollToSection("contact")}>
+          <button type="button" className="nav-item" onClick={() => scrollToSection("contact")}>
             <span className="nav-icon">
               <svg
                 viewBox="0 0 24 24"

@@ -439,7 +439,6 @@ export default function ARScan({ mode = "civilian" }) {
     setLanguage,
     t,
     speak: langSpeak,
-    voiceLanguages,
   } = useLanguage();
 
   // Manual Reading Input states
@@ -545,14 +544,11 @@ export default function ARScan({ mode = "civilian" }) {
       deviceType,
       systolic,
       diastolic,
-      pulse,
       glucose,
       glucoseUnit,
       temperature,
       temperatureUnit,
       spo2,
-      weight,
-      weightUnit,
     } = manualReadings;
     let category = "normal";
     let message = "";
@@ -868,6 +864,7 @@ export default function ARScan({ mode = "civilian" }) {
     } else {
       fetchNearbyHospitals(null);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [t]);
 
   const fetchNearbyHospitals = useCallback(
