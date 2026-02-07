@@ -1199,11 +1199,11 @@ body {
   .home-navbar .nav-links {
     display: none;
   }
-  
+
   .home-navbar .navbar-logo span:first-child {
     font-size: 20px;
   }
-  
+
   .home-navbar .get-started-btn {
     padding: 8px 16px;
     font-size: 13px;

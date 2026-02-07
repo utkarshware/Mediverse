@@ -24,12 +24,14 @@ Mediverse is a comprehensive React-based web application designed to provide AI-
 ## Features
 
 ### 🏥 Health Monitoring Dashboard
+
 - **Real-time Health Readings**: Track vital signs including temperature, blood pressure, blood glucose, heart rate, SpO2, and BMI
 - **Interactive Charts**: Visual representation of health trends over time with Line and Bar chart options
 - **Reading History**: Complete history of all health measurements with timestamps
 - **Unit Conversion**: Toggle between units (Celsius/Fahrenheit, mg/dL/mmol/L, kg/lbs)
 
 ### 📱 AR Medical Device Scanner
+
 - **Device Integration**: Support for multiple medical devices:
   - Thermometer (Digital & Infrared)
   - Blood Pressure Monitor
@@ -40,12 +42,14 @@ Mediverse is a comprehensive React-based web application designed to provide AI-
 - **Voice Feedback**: Audio announcements of readings in multiple languages
 
 ### 🗺️ Hospital Finder
+
 - **Real-time GPS Location**: Uses actual user location for accurate results
 - **OpenStreetMap Integration**: Powered by Overpass API for real hospital data
 - **Distance Calculation**: Shows distance to nearby hospitals using Haversine formula
 - **Emergency Services**: Quick access to nearby healthcare facilities
 
 ### 🌍 Multi-Language Support
+
 - English
 - Hindi (हिंदी)
 - Spanish (Español)
@@ -58,12 +62,14 @@ Mediverse is a comprehensive React-based web application designed to provide AI-
 - Portuguese (Português)
 
 ### 👤 User Profiles
+
 - **Civilian Mode**: For general public health monitoring
 - **Student Mode**: Specialized features for medical students
 - **Profile Management**: Personal health data storage and management
 - **Google OAuth Integration**: Secure authentication
 
 ### 📊 Health Analytics
+
 - **Trend Analysis**: Track health metrics over time
 - **Chart Visualizations**: Line and bar charts for data interpretation
 - **Risk Assessment**: Color-coded health status indicators (Green/Yellow/Red)
@@ -71,18 +77,19 @@ Mediverse is a comprehensive React-based web application designed to provide AI-
 
 ## Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| **React 19** | Frontend UI Framework |
-| **React Router 7** | Client-side Routing |
-| **Firebase** | Authentication & Database |
-| **OpenStreetMap Overpass API** | Real-time Hospital Data |
-| **CSS3** | Styling with CSS Variables |
-| **Vercel** | Deployment & Hosting |
+| Technology                     | Purpose                    |
+| ------------------------------ | -------------------------- |
+| **React 19**                   | Frontend UI Framework      |
+| **React Router 7**             | Client-side Routing        |
+| **Firebase**                   | Authentication & Database  |
+| **OpenStreetMap Overpass API** | Real-time Hospital Data    |
+| **CSS3**                       | Styling with CSS Variables |
+| **Vercel**                     | Deployment & Hosting       |
 
 ## Installation
 
 ### Prerequisites
+
 - Node.js (v18 or higher)
 - npm or yarn
 - Firebase account (for authentication)
@@ -90,19 +97,22 @@ Mediverse is a comprehensive React-based web application designed to provide AI-
 ### Setup
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/utkarshware/Mediverse.git
    cd Mediverse
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Configure Firebase**
-   
+
    Create a Firebase project and update `src/firebase/config.js` with your credentials:
+
    ```javascript
    const firebaseConfig = {
      apiKey: "YOUR_API_KEY",
@@ -110,15 +120,16 @@ Mediverse is a comprehensive React-based web application designed to provide AI-
      projectId: "YOUR_PROJECT_ID",
      storageBucket: "YOUR_STORAGE_BUCKET",
      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-     appId: "YOUR_APP_ID"
+     appId: "YOUR_APP_ID",
    };
    ```
 
 4. **Start development server**
+
    ```bash
    npm start
    ```
-   
+
    Opens [http://localhost:3000](http://localhost:3000) in your browser.
 
 5. **Build for production**
@@ -174,24 +185,28 @@ Mediverse/
 ## Usage
 
 ### Getting Started
+
 1. Visit the [live demo](https://mediverse-black.vercel.app)
 2. Click "Get Started" to access the platform
 3. Choose your user type (Civilian or Student)
 4. Sign in with Google or email
 
 ### Health Monitoring
+
 1. Navigate to the AR Scanner page
 2. Select your medical device type
 3. Enter or scan your health readings
 4. View instant analysis and recommendations
 
 ### Finding Nearby Hospitals
+
 1. Go to Emergency Services section
 2. Allow location access when prompted
 3. View real-time list of nearby hospitals with distances
 4. Click on any hospital for navigation
 
 ### Viewing Health History
+
 1. Access your Profile page
 2. Scroll to Health Monitoring section
 3. Toggle between Chart and History views
@@ -200,6 +215,7 @@ Mediverse/
 ## API Integration
 
 ### OpenStreetMap Overpass API
+
 The hospital finder uses the Overpass API to fetch real hospital data:
 
 ```javascript
@@ -214,6 +230,7 @@ const query = `
 ```
 
 ### Firebase Services
+
 - **Authentication**: Google OAuth and Email/Password
 - **Firestore**: User profile and health data storage
 - **Analytics**: Usage tracking and insights
@@ -221,12 +238,14 @@ const query = `
 ## Deployment
 
 ### Vercel (Recommended)
+
 ```bash
 npm install -g vercel
 vercel --prod
 ```
 
 ### GitHub Pages
+
 ```bash
 npm run deploy
 ```
@@ -245,20 +264,20 @@ Contributions are welcome! Please follow these steps:
 
 For production deployment, set these environment variables:
 
-| Variable | Description |
-|----------|-------------|
-| `REACT_APP_FIREBASE_API_KEY` | Firebase API Key |
+| Variable                         | Description          |
+| -------------------------------- | -------------------- |
+| `REACT_APP_FIREBASE_API_KEY`     | Firebase API Key     |
 | `REACT_APP_FIREBASE_AUTH_DOMAIN` | Firebase Auth Domain |
-| `REACT_APP_FIREBASE_PROJECT_ID` | Firebase Project ID |
+| `REACT_APP_FIREBASE_PROJECT_ID`  | Firebase Project ID  |
 
 ## Browser Support
 
-| Browser | Support |
-|---------|---------|
-| Chrome | ✅ Full |
-| Firefox | ✅ Full |
-| Safari | ✅ Full |
-| Edge | ✅ Full |
+| Browser         | Support |
+| --------------- | ------- |
+| Chrome          | ✅ Full |
+| Firefox         | ✅ Full |
+| Safari          | ✅ Full |
+| Edge            | ✅ Full |
 | Mobile Browsers | ✅ Full |
 
 ## License

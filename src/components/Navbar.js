@@ -36,10 +36,18 @@ export default function Navbar({ onContactClick }) {
         </div>
 
         <div className="nav-links">
-          <button type="button" onClick={goHome}>Home</button>
-          <button type="button" onClick={() => scrollToSection("services")}>Services</button>
-          <button type="button" onClick={() => scrollToSection("how")}>How It Works</button>
-          <button type="button" onClick={() => scrollToSection("contact")}>Contact</button>
+          <button type="button" onClick={goHome}>
+            Home
+          </button>
+          <button type="button" onClick={() => scrollToSection("services")}>
+            Services
+          </button>
+          <button type="button" onClick={() => scrollToSection("how")}>
+            How It Works
+          </button>
+          <button type="button" onClick={() => scrollToSection("contact")}>
+            Contact
+          </button>
         </div>
 
         <button className="get-started-btn" onClick={() => navigate("/login")}>

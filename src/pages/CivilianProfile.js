@@ -738,7 +738,9 @@ export default function CivilianProfile() {
                       >
                         <span className="bar-value">{label}</span>
                       </div>
-                      <span className="bar-date">{getDeviceDisplayName(deviceType)}</span>
+                      <span className="bar-date">
+                        {getDeviceDisplayName(deviceType)}
+                      </span>
                       <span className="bar-date-small">{date}</span>
                     </div>
                   );
