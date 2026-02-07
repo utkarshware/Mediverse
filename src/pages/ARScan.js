@@ -434,12 +434,7 @@ export default function ARScan({ mode = "civilian" }) {
   const [showCallConfirm, setShowCallConfirm] = useState(null);
 
   // Multilingual support
-  const {
-    language,
-    setLanguage,
-    t,
-    speak: langSpeak,
-  } = useLanguage();
+  const { language, setLanguage, t, speak: langSpeak } = useLanguage();
 
   // Manual Reading Input states
   const [showManualInput, setShowManualInput] = useState(false);

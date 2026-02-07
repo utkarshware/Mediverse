@@ -53,7 +53,11 @@ export default function Navbar({ onContactClick }) {
             <span>Home</span>
           </button>
 
-          <button type="button" className="nav-item" onClick={() => scrollToSection("services")}>
+          <button
+            type="button"
+            className="nav-item"
+            onClick={() => scrollToSection("services")}
+          >
             <span className="nav-icon">
               <svg
                 viewBox="0 0 24 24"
@@ -70,7 +74,11 @@ export default function Navbar({ onContactClick }) {
             <span>Services</span>
           </button>
 
-          <button type="button" className="nav-item" onClick={() => scrollToSection("how")}>
+          <button
+            type="button"
+            className="nav-item"
+            onClick={() => scrollToSection("how")}
+          >
             <span className="nav-icon">
               <svg
                 viewBox="0 0 24 24"
@@ -86,7 +94,11 @@ export default function Navbar({ onContactClick }) {
             <span>How It Works</span>
           </button>
 
-          <button type="button" className="nav-item" onClick={() => scrollToSection("contact")}>
+          <button
+            type="button"
+            className="nav-item"
+            onClick={() => scrollToSection("contact")}
+          >
             <span className="nav-icon">
               <svg
                 viewBox="0 0 24 24"
