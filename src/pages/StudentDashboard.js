@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import AnimatedBackground from "../components/AnimatedBackground";
 import bpMonitor from "../assets/Blood Pressure Monitor.jpg";
 import glucometer from "../assets/Glucometer.jpg";
 import thermometer from "../assets/Thermometer.jpg";
@@ -10,6 +11,8 @@ export default function StudentDashboard() {
 
   return (
     <div className="student-dashboard">
+      <AnimatedBackground variant="student" />
+
       {/* STUDENT NAVBAR */}
       <nav className="student-navbar">
         <div className="navbar-container">
@@ -17,8 +20,21 @@ export default function StudentDashboard() {
             <span>Mediverse</span>
             <span className="badge-text">Student</span>
           </div>
-          <button className="profile-btn" onClick={() => navigate("/profile")}>
-            👤 My Profile
+          <button
+            className="profile-btn"
+            onClick={() => navigate("/student/profile")}
+          >
+            <svg
+              className="profile-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <circle cx="12" cy="7" r="4" />
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+            </svg>
+            My Profile
           </button>
         </div>
       </nav>
@@ -30,13 +46,7 @@ export default function StudentDashboard() {
           <p>
             Use AR-assisted scanning to identify devices and learn how they work
           </p>
-          <button
-            className="scan-btn"
-            onClick={() =>
-              (window.location.href =
-                process.env.REACT_APP_AR_MED_URL || "http://localhost:3001")
-            }
-          >
+          <button className="scan-btn" onClick={() => navigate("/ar-scan")}>
             Start Scan
           </button>
         </div>

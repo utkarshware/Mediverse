@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CivilianNavbar from "../components/CivilianNavbar";
 import ManualInput from "../components/ManualInput";
 import Footer from "../components/Footer";
+import AnimatedBackground from "../components/AnimatedBackground";
 
 export default function CivilianDashboard() {
+  const navigate = useNavigate();
   const [showAppointmentModal, setShowAppointmentModal] = useState(false);
   const [selectedHospital, setSelectedHospital] = useState(null);
   const [appointmentData, setAppointmentData] = useState({
@@ -89,6 +92,8 @@ export default function CivilianDashboard() {
   };
   return (
     <div className="civilian-dashboard">
+      <AnimatedBackground variant="light" />
+
       {/* CIVILIAN NAVBAR */}
       <CivilianNavbar />
 
@@ -100,13 +105,7 @@ export default function CivilianDashboard() {
             Use your camera to scan the device and analyze readings
             automatically
           </p>
-          <button
-            className="scan-btn"
-            onClick={() =>
-              (window.location.href =
-                process.env.REACT_APP_AR_MED_URL || "http://localhost:3001")
-            }
-          >
+          <button className="scan-btn" onClick={() => navigate("/ar-scan")}>
             Start Scan
           </button>
         </div>
