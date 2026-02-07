@@ -179,7 +179,6 @@ export default function CivilianProfile() {
   const [saving, setSaving] = useState(false);
   const [scanHistory, setScanHistory] = useState([]);
   const [healthReadings, setHealthReadings] = useState([]);
-  const [selectedChartType, setSelectedChartType] = useState("bp_monitor");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -278,13 +277,34 @@ export default function CivilianProfile() {
     return { status: "Stable", color: "#10b981" };
   };
 
-  // Get readings for chart (last 7 readings of selected type)
+  // Get readings for chart (last 10 readings of all types combined)
   const getChartData = () => {
-    const filtered = healthReadings
-      .filter((r) => r.deviceType === selectedChartType)
-      .slice(0, 7)
-      .reverse();
-    return filtered;
+    const allReadings = healthReadings.slice(0, 10).reverse();
+    return allReadings;
+  };
+
+  // Get device type display name
+  const getDeviceDisplayName = (deviceType) => {
+    const names = {
+      bp_monitor: "BP",
+      glucometer: "Glucose",
+      thermometer: "Temp",
+      oximeter: "SpO2",
+      scale: "Weight",
+    };
+    return names[deviceType] || deviceType;
+  };
+
+  // Get color by device type
+  const getDeviceColor = (deviceType) => {
+    const colors = {
+      bp_monitor: "#ef4444",
+      glucometer: "#3b82f6",
+      thermometer: "#f59e0b",
+      oximeter: "#10b981",
+      scale: "#8b5cf6",
+    };
+    return colors[deviceType] || "#6b7280";
   };
 
   // Clear all readings
@@ -659,18 +679,8 @@ export default function CivilianProfile() {
         {healthReadings.length > 0 && (
           <div className="health-chart-section">
             <div className="chart-header">
-              <h3>{Icons.chart} Health Monitoring</h3>
+              <h3>{Icons.chart} Health Monitoring - All Devices</h3>
               <div className="chart-controls">
-                <select
-                  value={selectedChartType}
-                  onChange={(e) => setSelectedChartType(e.target.value)}
-                  className="chart-type-select"
-                >
-                  <option value="bp_monitor">Blood Pressure</option>
-                  <option value="glucometer">Glucose</option>
-                  <option value="thermometer">Temperature</option>
-                  <option value="oximeter">Oxygen Level</option>
-                </select>
                 <button className="clear-readings-btn" onClick={clearReadings}>
                   {Icons.trash}
                 </button>
@@ -681,25 +691,31 @@ export default function CivilianProfile() {
               <div className="chart-bars">
                 {getChartData().map((reading, index) => {
                   let value = 0;
-                  let maxValue = 200;
+                  let maxValue = 100;
                   let label = "";
+                  const deviceType = reading.deviceType;
 
-                  if (selectedChartType === "bp_monitor") {
+                  // Normalize all values to percentage for unified display
+                  if (deviceType === "bp_monitor") {
                     value = parseInt(reading.values?.systolic) || 0;
                     maxValue = 200;
                     label = `${reading.values?.systolic || 0}/${reading.values?.diastolic || 0}`;
-                  } else if (selectedChartType === "glucometer") {
+                  } else if (deviceType === "glucometer") {
                     value = parseInt(reading.values?.glucose) || 0;
                     maxValue = 400;
-                    label = `${value} mg/dL`;
-                  } else if (selectedChartType === "thermometer") {
+                    label = `${value}`;
+                  } else if (deviceType === "thermometer") {
                     value = parseFloat(reading.values?.temperature) || 0;
                     maxValue = 110;
                     label = `${value}°`;
-                  } else if (selectedChartType === "oximeter") {
+                  } else if (deviceType === "oximeter") {
                     value = parseInt(reading.values?.spo2) || 0;
                     maxValue = 100;
                     label = `${value}%`;
+                  } else if (deviceType === "scale") {
+                    value = parseFloat(reading.values?.weight) || 0;
+                    maxValue = 200;
+                    label = `${value}`;
                   }
 
                   const heightPercent = Math.min((value / maxValue) * 100, 100);
@@ -717,29 +733,20 @@ export default function CivilianProfile() {
                         className="chart-bar"
                         style={{
                           height: `${heightPercent}%`,
-                          backgroundColor: getCategoryColor(reading.category),
+                          backgroundColor: getDeviceColor(deviceType),
                         }}
                       >
                         <span className="bar-value">{label}</span>
                       </div>
-                      <span className="bar-date">{date}</span>
+                      <span className="bar-date">{getDeviceDisplayName(deviceType)}</span>
+                      <span className="bar-date-small">{date}</span>
                     </div>
                   );
                 })}
               </div>
               {getChartData().length === 0 && (
                 <div className="no-chart-data">
-                  <p>
-                    No{" "}
-                    {selectedChartType === "bp_monitor"
-                      ? "Blood Pressure"
-                      : selectedChartType === "glucometer"
-                        ? "Glucose"
-                        : selectedChartType === "thermometer"
-                          ? "Temperature"
-                          : "SpO2"}{" "}
-                    readings recorded yet
-                  </p>
+                  <p>No health readings recorded yet</p>
                 </div>
               )}
             </div>
@@ -748,30 +755,37 @@ export default function CivilianProfile() {
               <span className="legend-item">
                 <span
                   className="legend-dot"
-                  style={{ background: "#10b981" }}
+                  style={{ background: "#ef4444" }}
                 ></span>
-                Normal
+                Blood Pressure
+              </span>
+              <span className="legend-item">
+                <span
+                  className="legend-dot"
+                  style={{ background: "#3b82f6" }}
+                ></span>
+                Glucose
               </span>
               <span className="legend-item">
                 <span
                   className="legend-dot"
                   style={{ background: "#f59e0b" }}
                 ></span>
-                Elevated
+                Temperature
               </span>
               <span className="legend-item">
                 <span
                   className="legend-dot"
-                  style={{ background: "#f97316" }}
+                  style={{ background: "#10b981" }}
                 ></span>
-                Risk
+                SpO2
               </span>
               <span className="legend-item">
                 <span
                   className="legend-dot"
-                  style={{ background: "#ef4444" }}
+                  style={{ background: "#8b5cf6" }}
                 ></span>
-                High Risk
+                Weight
               </span>
             </div>
           </div>

@@ -4837,16 +4837,26 @@ textarea.form-input {
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 1rem 2rem;
+  padding: 16px 2rem;
   transition: all 0.3s ease;
+  background: linear-gradient(
+    135deg,
+    var(--divider-border) 0%,
+    var(--hover-subtle) 100%
+  );
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-modern.scrolled {
-  background: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(
+    135deg,
+    var(--divider-border) 0%,
+    var(--hover-subtle) 100%
+  );
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  padding: 0.75rem 2rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  padding: 12px 2rem;
 }
 
 .navbar-modern .navbar-container {
@@ -6906,6 +6916,13 @@ textarea.form-input {
 .bar-date {
   font-size: 0.7rem;
   color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.bar-date-small {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  margin-top: 2px;
 }
 
 .no-chart-data {
